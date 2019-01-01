@@ -24,10 +24,9 @@ function createListElement() {
     btn2.appendChild(document.createTextNode("Delete"));
     li.appendChild(btn2);
 
-    // onclick event for both buttons
-    btn.onclick = underlineList;
-    btn2.onclick = removeListElement;
-
+    // onclick events for buttons done and delete
+    btn.addEventListener("click", underlineList);
+    btn2.addEventListener("click", removeListElement);
 }
 
 // toggles the .done class in css on and off
@@ -55,12 +54,6 @@ function inputClick(event) {
 
 button.addEventListener("click", buttonClick);
 input.addEventListener("keypress", inputClick);
-
-
-
-
-
-
 
 
 
