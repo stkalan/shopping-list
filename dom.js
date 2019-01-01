@@ -1,7 +1,8 @@
 let button = document.getElementById("enter");
 let input= document.getElementById("userinput");
 let ul = document.querySelector("ul");
-let list = document.querySelector("ul > li");
+let li = document.getElementsByTagName("li");
+
 
 function inputLength() {
   return input.value.length;
@@ -9,14 +10,35 @@ function inputLength() {
 
 function createListElement() {
     let li = document.createElement("li");
-    let btn = document.createElement("button");
     li.appendChild(document.createTextNode(input.value));
-    btn.appendChild(document.createTextNode("Done!"));
     ul.appendChild(li);
-    li.appendChild(btn);
     input.value = "";
 
+    // creating and appending button to toggle .done class on and off
+    let btn = document.createElement("button");
+    li.appendChild(btn);
+    btn.appendChild(document.createTextNode("Done"));
+
+    // creating and appending button to delete items off the list
+    let btn2 = document.createElement("button");
+    btn2.appendChild(document.createTextNode("Delete"));
+    li.appendChild(btn2);
+
+    // onclick event for both buttons
+    btn.onclick = underlineList;
+    btn2.onclick = removeListElement;
+
 }
+
+// toggles the .done class in css on and off
+function underlineList(event){
+    event.target.parentNode.classList.toggle("done");
+}
+
+// removes the list item
+function removeListElement(event2){
+    event2.target.parentNode.remove();
+} 
 
 function buttonClick() {
     if (inputLength() > 0) {
@@ -30,14 +52,13 @@ function inputClick(event) {
     }
 }
 
-function toggleClick() {
-    let li = document.querySelector("li");
-    li.classList.toggle("done");
-}
 
 button.addEventListener("click", buttonClick);
 input.addEventListener("keypress", inputClick);
-list.addEventListener("click", toggleClick);
+
+
+
+
 
 
 
